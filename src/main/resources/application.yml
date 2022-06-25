@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application.name: db-exp
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/experiment
+    username: root
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
