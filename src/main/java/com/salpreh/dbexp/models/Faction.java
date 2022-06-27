@@ -1,28 +1,72 @@
 package com.salpreh.dbexp.models;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "factions")
-@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter @Setter
 public class Faction {
+
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column
+    @Column(unique = false)
     private String name;
 
     @OneToMany(mappedBy = "affiliation")
-    private Set<Planet> affiliatedPersons;
+    @Builder.Default
+    private Set<Planet> affiliatedPlanets = new HashSet<>();
 
     @ManyToMany(mappedBy = "affiliations")
-    private Set<Person> affiliatedPlanets;
+    @Builder.Default
+    private Set<Person> affiliatedPersons = new HashSet<>();
 
     @OneToMany(mappedBy = "affiliation")
-    private Set<Spaceship> affiliatedSpaceships;
+    @Builder.Default
+    private Set<Spaceship> affiliatedSpaceships = new HashSet<>();
+
+    public void removePlanet(Planet planet) {
+        affiliatedPlanets.remove(planet);
+    }
+
+    public void addPlanet(Planet planet) {
+        affiliatedPlanets.add(planet);
+    }
+
+    public void addPerson(Person person) {
+        affiliatedPersons.add(person);
+    }
+
+    public void removePerson(Person person) {
+        affiliatedPersons.remove(person);
+    }
+
+    public void addSpaceship(Spaceship spaceship) {
+        affiliatedSpaceships.add(spaceship);
+    }
+
+    public void removeSpaceship(Spaceship spaceship) {
+        affiliatedSpaceships.remove(spaceship);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Faction)) return false;
+
+        Faction other = (Faction)o;
+        return id != null && id.equals(other.getId());
+    }
+
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
