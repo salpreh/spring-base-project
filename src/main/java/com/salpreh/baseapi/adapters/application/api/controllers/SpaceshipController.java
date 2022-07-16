@@ -1,7 +1,7 @@
 package com.salpreh.baseapi.adapters.application.api.controllers;
 
-import com.salpreh.baseapi.adapters.application.api.mapper.ApiMapper;
-import com.salpreh.baseapi.adapters.application.api.model.ApiPage;
+import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
+import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
 import com.salpreh.baseapi.domain.models.Spaceship;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand;
 import com.salpreh.baseapi.domain.ports.infrastructure.SpaceshipDatasourcePort;

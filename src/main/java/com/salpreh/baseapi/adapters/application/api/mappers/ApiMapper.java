@@ -1,6 +1,6 @@
-package com.salpreh.baseapi.adapters.application.api.mapper;
+package com.salpreh.baseapi.adapters.application.api.mappers;
 
-import com.salpreh.baseapi.adapters.application.api.model.ApiPage;
+import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
 import org.mapstruct.Mapper;
 import org.springframework.data.domain.Page;
 
