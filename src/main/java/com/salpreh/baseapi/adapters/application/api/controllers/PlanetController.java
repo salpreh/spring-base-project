@@ -2,9 +2,9 @@ package com.salpreh.baseapi.adapters.application.api.controllers;
 
 import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
-import com.salpreh.baseapi.domain.models.Spaceship;
-import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand;
-import com.salpreh.baseapi.domain.ports.infrastructure.SpaceshipDatasourcePort;
+import com.salpreh.baseapi.domain.models.Planet;
+import com.salpreh.baseapi.domain.models.commands.PlanetCreateCommand;
+import com.salpreh.baseapi.domain.ports.infrastructure.PlanetDatasourcePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -14,41 +14,40 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/spaceship")
-public class SpaceshipController {
-
-  private final SpaceshipDatasourcePort datasourcePort;
+@RequestMapping( "planet")
+public class PlanetController {
+  private final PlanetDatasourcePort planetDatasourcePort;
   private final ApiMapper mapper;
 
   @GetMapping
-  public ApiPage<Spaceship> getAll(
+  public ApiPage<Planet> getAll(
     @RequestParam(defaultValue = "0") int page,
     @RequestParam(defaultValue = "10") int pageSize
   ) {
-    var data = datasourcePort.findAll(PageRequest.of(page, pageSize));
+    var data = planetDatasourcePort.findAll(PageRequest.of(page, pageSize));
 
     return mapper.map(data);
   }
 
   @GetMapping("{id}")
-  public Spaceship get(@PathVariable long id) {
-    return datasourcePort.findById(id)
+  public Planet get(@PathVariable long id) {
+    return planetDatasourcePort.findById(id)
       .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
   @PostMapping
-  public Spaceship create(@RequestBody SpaceshipCreateCommand command) {
-    return datasourcePort.createSpaceship(command);
+  public Planet create(@RequestBody PlanetCreateCommand command) {
+    return planetDatasourcePort.createPlanet(command);
   }
 
   @PutMapping("{id}")
-  public Spaceship update(@PathVariable long id, @RequestBody SpaceshipCreateCommand command) {
-    return datasourcePort.updateSpaceship(id, command);
+  public Planet update(@PathVariable long id, @RequestBody PlanetCreateCommand command) {
+    return planetDatasourcePort.updatePlanet(id, command);
   }
 
   @DeleteMapping("{id}")
   public ResponseEntity<Void> delete(@PathVariable long id) {
-    datasourcePort.deletePlanet(id);
+    planetDatasourcePort.deletePlanet(id);
 
     return ResponseEntity.noContent()
       .build();
