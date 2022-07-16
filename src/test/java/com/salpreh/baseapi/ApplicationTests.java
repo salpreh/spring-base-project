@@ -1,4 +1,4 @@
-package com.salpreh.dbexp;
+package com.salpreh.baseapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

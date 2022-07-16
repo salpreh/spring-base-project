@@ -1,12 +1,13 @@
-package com.salpreh.dbexp.config;
+package com.salpreh.baseapi.config;
 
 import com.github.javafaker.Faker;
-import com.salpreh.dbexp.domain.constants.RaceType;
-import com.salpreh.dbexp.models.*;
-import com.salpreh.dbexp.repositories.FactionRepository;
-import com.salpreh.dbexp.repositories.PersonRepository;
-import com.salpreh.dbexp.repositories.PlanetRepository;
-import com.salpreh.dbexp.repositories.SpaceshipRepository;
+import com.salpreh.baseapi.domain.constants.RaceType;
+import com.salpreh.baseapi.models.*;
+import com.salpreh.baseapi.repositories.FactionRepository;
+import com.salpreh.baseapi.repositories.PersonRepository;
+import com.salpreh.baseapi.repositories.PlanetRepository;
+import com.salpreh.baseapi.repositories.SpaceshipRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.stream.IntStream;
 
+@Slf4j
 @Configuration
 @Profile("local")
 public class DbPopulate {
@@ -32,6 +34,12 @@ public class DbPopulate {
         return args -> {
             Faker faker = new Faker();
             RaceType[] races = new RaceType[] {RaceType.HUMAN, RaceType.ASARI, RaceType.KROGAN, RaceType.QUARIAN, RaceType.TURIAN, RaceType.SALARIAN};
+            if (factionRepository.count() > 0) {
+                log.warn("Found data in DB. Skiping DB dml");
+                return;
+            }
+
+            log.info("Populating DB");
             TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
             // Create some factions
@@ -120,6 +128,7 @@ public class DbPopulate {
             });
 
             transactionManager.commit(status);
+            log.info("DB populated");
         };
     }
 }
