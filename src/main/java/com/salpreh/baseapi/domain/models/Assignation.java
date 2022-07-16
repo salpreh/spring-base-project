@@ -8,8 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Assignation {
-    private Long id;
-    private String position;
-    private Person assignee;
-    private Spaceship assignation;
+  private Long id;
+  private String position;
+  private Person assignee;
+  private Spaceship assignation;
 }
