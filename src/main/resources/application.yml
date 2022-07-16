@@ -1,8 +1,10 @@
 server:
   port: 8080
+  servlet:
+    context-path: /api
 
 spring:
-  application.name: db-exp
+  application.name: base
 
   datasource:
     url: jdbc:postgresql://localhost:5432/experiment
