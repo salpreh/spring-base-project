@@ -35,17 +35,17 @@ public interface DbMapper {
   @Mapping(target = "affiliation", qualifiedByName = "withoutRelations")
   Planet mapWithoutRelations(PlanetEntity src);
 
-  @Named("withoutAssigned")
+  @Named("withoutAssignee")
   @Mapping(target = "assignee", ignore = true)
   @Mapping(target = "assignation.crew", ignore = true)
   @Mapping(target = "assignation.assignedPort", qualifiedByName = "withoutRelations")
   @Mapping(target = "assignation.affiliation", qualifiedByName = "withoutRelations")
-  Assignation mapWithoutAssignated(AssignationEntity src);
+  Assignation mapWithoutAssignee(AssignationEntity src);
 
-  @Named("withoutAssignee")
+  @Named("withoutAssigned")
   @Mapping(target = "assignation", ignore = true)
   @Mapping(target = "assignee.assignations", ignore = true)
   @Mapping(target = "assignee.birthPlanet", qualifiedByName = "withoutRelations")
   @Mapping(target = "assignee.affiliations", qualifiedByName = "withoutRelations")
-  Assignation mapWithoutAssignee(AssignationEntity src);
+  Assignation mapWithoutAssigned(AssignationEntity src);
 }
