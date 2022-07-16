@@ -19,7 +19,8 @@ public class Planet {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "planet_pk_gen", sequenceName = "planet_pk_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "planet_pk_gen")
     private Long id;
 
     @Column(unique = true)

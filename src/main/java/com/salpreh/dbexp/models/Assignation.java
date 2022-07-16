@@ -13,7 +13,8 @@ import javax.persistence.*;
 public class Assignation {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "assignation_pk_gen", sequenceName = "assignation_pk_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "assignation_pk_gen")
     private Long id;
 
     @Column
