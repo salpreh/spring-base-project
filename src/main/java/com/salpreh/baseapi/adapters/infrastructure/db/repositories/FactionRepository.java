@@ -1,6 +1,6 @@
-package com.salpreh.baseapi.repositories;
+package com.salpreh.baseapi.adapters.infrastructure.db.repositories;
 
-import com.salpreh.baseapi.models.Faction;
+import com.salpreh.baseapi.adapters.infrastructure.db.models.Faction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
