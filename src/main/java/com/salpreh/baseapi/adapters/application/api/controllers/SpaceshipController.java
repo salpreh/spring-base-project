@@ -3,10 +3,12 @@ package com.salpreh.baseapi.adapters.application.api.controllers;
 import com.salpreh.baseapi.adapters.application.api.mapper.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.model.ApiPage;
 import com.salpreh.baseapi.domain.models.Spaceship;
+import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand;
 import com.salpreh.baseapi.domain.ports.infrastructure.SpaceshipDatasourcePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -29,5 +31,23 @@ public class SpaceshipController {
   public Spaceship get(@PathVariable long id) {
     return datasourcePort.findById(id)
       .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+  }
+
+  @PostMapping
+  public Spaceship create(@RequestBody SpaceshipCreateCommand command) {
+    return datasourcePort.createSpaceship(command);
+  }
+
+  @PutMapping("{id}")
+  public Spaceship update(@PathVariable long id, @RequestBody SpaceshipCreateCommand command) {
+    return datasourcePort.updateSpaceship(id, command);
+  }
+
+  @DeleteMapping("{id}")
+  public ResponseEntity<Void> delete(@PathVariable long id) {
+    datasourcePort.deletePlanet(id);
+
+    return ResponseEntity.noContent()
+      .build();
   }
 }
