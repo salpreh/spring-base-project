@@ -16,7 +16,7 @@ import java.util.Set;
 public class SpaceshipEntity {
   @Id
   @Column
-  @SequenceGenerator(name = "spaceship_pk_gen", sequenceName = "spaceship_pk_gen")
+  @SequenceGenerator(name = "spaceship_pk_gen", sequenceName = "spaceship_pk_gen", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "spaceship_pk_gen")
   private Long id;
 
@@ -31,7 +31,7 @@ public class SpaceshipEntity {
   @JoinColumn(name = "affiliation_faction_id")
   private FactionEntity affiliation;
 
-  @OneToMany(mappedBy = "assignation", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "assignation", cascade = CascadeType.ALL, orphanRemoval = true)
   @Builder.Default
   private Set<AssignationEntity> crew = new HashSet<>();
 
@@ -40,6 +40,16 @@ public class SpaceshipEntity {
     if (faction != null) faction.addSpaceship(this);
 
     this.affiliation = faction;
+  }
+
+  public void setCrew(Set<AssignationEntity> crew) {
+    this.crew.clear();
+    crew.forEach(this::addCrew);
+  }
+
+  public void addCrew(AssignationEntity assignation) {
+    assignation.setAssignation(this);
+    crew.add(assignation);
   }
 
   @Override

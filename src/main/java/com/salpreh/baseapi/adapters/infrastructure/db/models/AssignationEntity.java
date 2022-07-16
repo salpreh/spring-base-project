@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class AssignationEntity {
   @Id
   @Column
-  @SequenceGenerator(name = "assignation_pk_gen", sequenceName = "assignation_pk_gen")
+  @SequenceGenerator(name = "assignation_pk_gen", sequenceName = "assignation_pk_gen", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "assignation_pk_gen")
   private Long id;
 
