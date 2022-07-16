@@ -44,35 +44,35 @@ public class DbPopulate {
 
             // Create some factions
             var allianceFaction = factionRepository.save(
-                Faction.builder().name("Systems Alliance").build()
+                FactionEntity.builder().name("Systems Alliance").build()
             );
             factionRepository.save(
-                Faction.builder().name("Turian Hierarchy").build()
+                FactionEntity.builder().name("Turian Hierarchy").build()
             );
 
             // Create Planets
             var earth = planetRepository.save(
-                Planet.builder()
+                PlanetEntity.builder()
                     .name("Earth")
                     .affiliation(allianceFaction)
                     .build()
             );
             planetRepository.save(
-                Planet.builder()
+                PlanetEntity.builder()
                     .name("Mars")
                     .affiliation(allianceFaction)
                     .build()
             );
             var edenPrime = planetRepository.save(
-                Planet.builder()
+                PlanetEntity.builder()
                     .name("Eden Prime")
                     .affiliation(allianceFaction)
                     .build()
             );
-            var planet = Planet.builder()
+            var planet = PlanetEntity.builder()
                 .name("Thessia")
                 .build();
-            planet.setAffiliation(Faction.builder()
+            planet.setAffiliation(FactionEntity.builder()
                     .name("Asari Republics")
                     .build()
             );
@@ -80,7 +80,7 @@ public class DbPopulate {
 
             // Create Spaceships
             var normandyShip = spaceshipRepository.save(
-                Spaceship.builder()
+                SpaceshipEntity.builder()
                     .name("Normandy SR-1")
                     .assignedPort(earth)
                     .affiliation(allianceFaction)
@@ -88,21 +88,21 @@ public class DbPopulate {
             );
 
             var pictorShip = spaceshipRepository.save(
-                Spaceship.builder()
+                SpaceshipEntity.builder()
                     .name("Pictor")
                     .assignedPort(edenPrime)
                     .build()
             );
 
             // Create persons with assignments
-            var person = Person.builder()
+            var person = PersonEntity.builder()
                 .name("John Shepard")
                 .alias("Shepard")
                 .race(RaceType.HUMAN)
                 .birthPlanet(earth)
                 .build();
             person.addAffiliation(allianceFaction);
-            person.addAssignation(Assignation.builder()
+            person.addAssignation(AssignationEntity.builder()
                 .position("Commander")
                 .assignation(normandyShip)
                 .build()
@@ -110,7 +110,7 @@ public class DbPopulate {
             personRepository.save(person);
 
             IntStream.range(0, 10).forEach(i -> {
-                var p = Person.builder()
+                var p = PersonEntity.builder()
                     .name(faker.name().fullName())
                     .alias(faker.name().username())
                     .race(races[faker.random().nextInt(0, 5)])
@@ -118,7 +118,7 @@ public class DbPopulate {
                     .birthPlanet(edenPrime)
                     .build();
 
-                p.addAssignation(Assignation.builder()
+                p.addAssignation(AssignationEntity.builder()
                     .position(faker.company().profession())
                     .assignation(pictorShip)
                     .build()

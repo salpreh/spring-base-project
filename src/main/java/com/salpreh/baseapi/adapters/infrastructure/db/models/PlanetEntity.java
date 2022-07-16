@@ -15,7 +15,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Planet {
+public class PlanetEntity {
 
     @Id
     @Column
@@ -28,21 +28,21 @@ public class Planet {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "affiliation_faction_id")
-    private Faction affiliation;
+    private FactionEntity affiliation;
 
     @OneToMany(mappedBy = "birthPlanet")
     @Builder.Default
-    private Set<Person> relevantPersons = new HashSet<>();
+    private Set<PersonEntity> relevantPersons = new HashSet<>();
 
-    public void addRelevantPerson(Person person) {
+    public void addRelevantPerson(PersonEntity person) {
         relevantPersons.add(person);
     }
 
-    public void removeRelevantPerson(Person person) {
+    public void removeRelevantPerson(PersonEntity person) {
         relevantPersons.remove(person);
     }
 
-    public void setAffiliation(Faction affiliation) {
+    public void setAffiliation(FactionEntity affiliation) {
         if (this.affiliation != null) this.affiliation.removePlanet(this);
         if (affiliation != null) affiliation.addPlanet(this);
 
@@ -54,12 +54,12 @@ public class Planet {
         if (this == o)
             return true;
 
-        if (!(o instanceof Planet))
+        if (!(o instanceof PlanetEntity))
             return false;
 
         return
             id != null &&
-           id.equals(((Planet) o).getId());
+           id.equals(((PlanetEntity) o).getId());
     }
 
     @Override
