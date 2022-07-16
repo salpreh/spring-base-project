@@ -12,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-public class Faction {
+public class FactionEntity {
 
     @Id
     @Column
@@ -25,45 +25,45 @@ public class Faction {
 
     @OneToMany(mappedBy = "affiliation")
     @Builder.Default
-    private Set<Planet> affiliatedPlanets = new HashSet<>();
+    private Set<PlanetEntity> affiliatedPlanets = new HashSet<>();
 
     @ManyToMany(mappedBy = "affiliations")
     @Builder.Default
-    private Set<Person> affiliatedPersons = new HashSet<>();
+    private Set<PersonEntity> affiliatedPersons = new HashSet<>();
 
     @OneToMany(mappedBy = "affiliation")
     @Builder.Default
-    private Set<Spaceship> affiliatedSpaceships = new HashSet<>();
+    private Set<SpaceshipEntity> affiliatedSpaceships = new HashSet<>();
 
-    public void removePlanet(Planet planet) {
+    public void removePlanet(PlanetEntity planet) {
         affiliatedPlanets.remove(planet);
     }
 
-    public void addPlanet(Planet planet) {
+    public void addPlanet(PlanetEntity planet) {
         affiliatedPlanets.add(planet);
     }
 
-    public void addPerson(Person person) {
+    public void addPerson(PersonEntity person) {
         affiliatedPersons.add(person);
     }
 
-    public void removePerson(Person person) {
+    public void removePerson(PersonEntity person) {
         affiliatedPersons.remove(person);
     }
 
-    public void addSpaceship(Spaceship spaceship) {
+    public void addSpaceship(SpaceshipEntity spaceship) {
         affiliatedSpaceships.add(spaceship);
     }
 
-    public void removeSpaceship(Spaceship spaceship) {
+    public void removeSpaceship(SpaceshipEntity spaceship) {
         affiliatedSpaceships.remove(spaceship);
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Faction)) return false;
+        if (!(o instanceof FactionEntity)) return false;
 
-        Faction other = (Faction)o;
+        FactionEntity other = (FactionEntity)o;
         return id != null && id.equals(other.getId());
     }
 

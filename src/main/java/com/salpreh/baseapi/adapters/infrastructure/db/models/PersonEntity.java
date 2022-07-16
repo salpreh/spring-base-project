@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-public class Person {
+public class PersonEntity {
 
     @Id
     @Column
@@ -36,7 +36,7 @@ public class Person {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "birth_planet_id")
-    private Planet birthPlanet;
+    private PlanetEntity birthPlanet;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -45,35 +45,35 @@ public class Person {
         inverseJoinColumns = @JoinColumn(name = "faction_id")
     )
     @Builder.Default
-    private Set<Faction> affiliations = new HashSet<>();
+    private Set<FactionEntity> affiliations = new HashSet<>();
 
     @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
     @Builder.Default
-    private Set<Assignation> assignations = new HashSet<>();
+    private Set<AssignationEntity> assignations = new HashSet<>();
 
-    public void setBirthPlanet(Planet birthPlanet) {
+    public void setBirthPlanet(PlanetEntity birthPlanet) {
         if (this.birthPlanet != null) birthPlanet.removeRelevantPerson(this);
         if (birthPlanet != null) birthPlanet.addRelevantPerson(this);
 
         this.birthPlanet = birthPlanet;
     }
 
-    public void addAssignation(Assignation assignation) {
+    public void addAssignation(AssignationEntity assignation) {
         assignation.setAssignee(this);
         assignations.add(assignation);
     }
 
-    public void removeAssignation(Assignation assignation) {
+    public void removeAssignation(AssignationEntity assignation) {
         assignation.setAssignee(this);
         assignations.remove(assignation);
     }
 
-    public void addAffiliation(Faction faction) {
+    public void addAffiliation(FactionEntity faction) {
         faction.addPerson(this);
         affiliations.add(faction);
     }
 
-    public void removeAffiliation(Faction faction) {
+    public void removeAffiliation(FactionEntity faction) {
         faction.removePerson(this);
         affiliations.remove(faction);
     }
@@ -83,12 +83,12 @@ public class Person {
         if (this == o)
             return true;
 
-        if (!(o instanceof Person))
+        if (!(o instanceof PersonEntity))
             return false;
 
         return
             id != null &&
-           id.equals(((Person) o).getId());
+           id.equals(((PersonEntity) o).getId());
     }
 
     @Override

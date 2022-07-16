@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-public class Assignation {
+public class AssignationEntity {
     @Id
     @Column
     @SequenceGenerator(name = "assignation_pk_gen", sequenceName = "assignation_pk_gen")
@@ -22,23 +22,23 @@ public class Assignation {
 
     @ManyToOne
     @JoinColumn(name = "assignee_person_id")
-    private Person assignee;
+    private PersonEntity assignee;
 
     @ManyToOne
     @JoinColumn(name = "assignation_spaceship_id")
-    private Spaceship assignation;
+    private SpaceshipEntity assignation;
 
     @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
 
-        if (!(o instanceof Assignation))
+        if (!(o instanceof AssignationEntity))
             return false;
 
         return
             id != null &&
-           id.equals(((Assignation) o).getId());
+           id.equals(((AssignationEntity) o).getId());
     }
 
     @Override

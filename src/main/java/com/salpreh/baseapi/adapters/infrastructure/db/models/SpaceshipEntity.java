@@ -12,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-public class Spaceship {
+public class SpaceshipEntity {
     @Id
     @Column
     @SequenceGenerator(name = "spaceship_pk_gen", sequenceName = "spaceship_pk_gen")
@@ -24,17 +24,17 @@ public class Spaceship {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "port_planet_id")
-    private Planet assignedPort;
+    private PlanetEntity assignedPort;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "affiliation_faction_id")
-    private Faction affiliation;
+    private FactionEntity affiliation;
 
     @OneToMany(mappedBy = "assignation", cascade = CascadeType.ALL)
     @Builder.Default
-    private Set<Assignation> crew = new HashSet<>();
+    private Set<AssignationEntity> crew = new HashSet<>();
 
-    public void setAffiliation(Faction faction) {
+    public void setAffiliation(FactionEntity faction) {
         if (this.affiliation != null) this.affiliation.removeSpaceship(this);
         if (faction != null) faction.addSpaceship(this);
 
@@ -46,12 +46,12 @@ public class Spaceship {
         if (this == o)
             return true;
 
-        if (!(o instanceof Spaceship))
+        if (!(o instanceof SpaceshipEntity))
             return false;
 
         return
             id != null &&
-           id.equals(((Spaceship) o).getId());
+           id.equals(((SpaceshipEntity) o).getId());
     }
 
     @Override
