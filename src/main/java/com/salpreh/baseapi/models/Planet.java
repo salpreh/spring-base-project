@@ -1,4 +1,4 @@
-package com.salpreh.dbexp.models;
+package com.salpreh.baseapi.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

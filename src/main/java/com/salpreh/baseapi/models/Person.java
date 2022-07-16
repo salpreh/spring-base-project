@@ -1,6 +1,6 @@
-package com.salpreh.dbexp.models;
+package com.salpreh.baseapi.models;
 
-import com.salpreh.dbexp.domain.constants.RaceType;
+import com.salpreh.baseapi.domain.constants.RaceType;
 import lombok.*;
 
 import javax.persistence.*;

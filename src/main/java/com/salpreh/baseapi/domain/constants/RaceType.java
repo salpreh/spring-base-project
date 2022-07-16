@@ -1,4 +1,4 @@
-package com.salpreh.dbexp.domain.constants;
+package com.salpreh.baseapi.domain.constants;
 
 public enum RaceType {
     HUMAN,
