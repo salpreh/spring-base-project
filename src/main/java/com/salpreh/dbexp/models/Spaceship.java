@@ -15,7 +15,8 @@ import java.util.Set;
 public class Spaceship {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "spaceship_pk_gen", sequenceName = "spaceship_pk_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "spaceship_pk_gen")
     private Long id;
 
     @Column(unique = true)

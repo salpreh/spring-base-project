@@ -17,7 +17,8 @@ public class Person {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "person_pk_gen", sequenceName = "person_pk_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_pk_gen")
     private Long id;
 
     @Column

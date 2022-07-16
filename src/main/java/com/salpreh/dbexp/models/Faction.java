@@ -16,7 +16,8 @@ public class Faction {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "faction_pk_gen", sequenceName = "faction_pk_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "faction_pk_gen")
     private Long id;
 
     @Column(unique = false)
