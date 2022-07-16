@@ -54,6 +54,11 @@ public class PlanetAdapter implements PlanetDatasourcePort {
     return mapper.map(planetRepository.save(entity));
   }
 
+  @Override
+  public void deletePlanet(long id) {
+    planetRepository.deleteById(id);
+  }
+
   private PlanetEntity processCommand(PlanetCreateCommand command, PlanetEntity entity) {
     entity.setName(command.getName());
 
@@ -66,10 +71,5 @@ public class PlanetAdapter implements PlanetDatasourcePort {
     entity.setAffiliation(faction);
 
     return entity;
-  }
-
-  @Override
-  public void deletePlanet(long id) {
-    planetRepository.deleteById(id);
   }
 }

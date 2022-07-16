@@ -19,6 +19,12 @@ public interface DbMapper {
   Planet map(PlanetEntity src);
   PlanetEntity map(Planet src);
 
+  @Mapping(target = "affiliatedPersons", qualifiedByName = "withoutRelations")
+  @Mapping(target = "affiliatedPlanets", qualifiedByName = "withoutRelations")
+  @Mapping(target = "affiliatedSpaceships", qualifiedByName = "withoutRelations")
+  Faction map(FactionEntity src);
+  FactionEntity map(Faction src);
+
   Assignation map(AssignationEntity src);
   AssignationEntity map(Assignation src);
 
@@ -38,6 +44,12 @@ public interface DbMapper {
   @Mapping(target = "affiliations", qualifiedByName = "withoutRelations")
   @Mapping(target = "assignations", ignore = true)
   Person mapWithoutRelations(PersonEntity src);
+
+  @Named("withoutRelations")
+  @Mapping(target = "assignedPort", qualifiedByName = "withoutRelations")
+  @Mapping(target = "affiliation", qualifiedByName = "withoutRelations")
+  @Mapping(target = "crew", ignore = true)
+  Spaceship mapWithoutRelations(SpaceshipEntity src);
 
   @Named("withoutAssignee")
   @Mapping(target = "assignee", ignore = true)
