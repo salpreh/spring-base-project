@@ -19,7 +19,7 @@ public class PlanetEntity {
 
   @Id
   @Column
-  @SequenceGenerator(name = "planet_pk_gen", sequenceName = "planet_pk_gen")
+  @SequenceGenerator(name = "planet_pk_gen", sequenceName = "planet_pk_gen", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "planet_pk_gen")
   private Long id;
 

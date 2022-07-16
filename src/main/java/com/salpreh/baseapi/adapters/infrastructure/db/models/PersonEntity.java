@@ -18,7 +18,7 @@ public class PersonEntity {
 
   @Id
   @Column
-  @SequenceGenerator(name = "person_pk_gen", sequenceName = "person_pk_gen")
+  @SequenceGenerator(name = "person_pk_gen", sequenceName = "person_pk_gen", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_pk_gen")
   private Long id;
 
@@ -48,7 +48,7 @@ public class PersonEntity {
   @Builder.Default
   private Set<FactionEntity> affiliations = new HashSet<>();
 
-  @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL, orphanRemoval = true)
   @Builder.Default
   private Set<AssignationEntity> assignations = new HashSet<>();
 
@@ -65,7 +65,7 @@ public class PersonEntity {
   }
 
   public void removeAssignation(AssignationEntity assignation) {
-    assignation.setAssignee(this);
+    assignation.setAssignee(null);
     assignations.remove(assignation);
   }
 

@@ -17,7 +17,7 @@ public class FactionEntity {
 
   @Id
   @Column
-  @SequenceGenerator(name = "faction_pk_gen", sequenceName = "faction_pk_gen")
+  @SequenceGenerator(name = "faction_pk_gen", sequenceName = "faction_pk_gen", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "faction_pk_gen")
   private Long id;
 
