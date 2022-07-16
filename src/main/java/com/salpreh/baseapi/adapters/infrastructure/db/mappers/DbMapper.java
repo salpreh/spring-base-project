@@ -1,13 +1,7 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.mappers;
 
-import com.salpreh.baseapi.adapters.infrastructure.db.models.AssignationEntity;
-import com.salpreh.baseapi.adapters.infrastructure.db.models.FactionEntity;
-import com.salpreh.baseapi.adapters.infrastructure.db.models.PlanetEntity;
-import com.salpreh.baseapi.adapters.infrastructure.db.models.SpaceshipEntity;
-import com.salpreh.baseapi.domain.models.Assignation;
-import com.salpreh.baseapi.domain.models.Faction;
-import com.salpreh.baseapi.domain.models.Planet;
-import com.salpreh.baseapi.domain.models.Spaceship;
+import com.salpreh.baseapi.adapters.infrastructure.db.models.*;
+import com.salpreh.baseapi.domain.models.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -20,8 +14,12 @@ public interface DbMapper {
   Spaceship map(SpaceshipEntity src);
   SpaceshipEntity map(Spaceship src);
 
-  Assignation map(AssignationEntity src);
+  @Mapping(target = "affiliation", qualifiedByName = "withoutRelations")
+  @Mapping(target = "relevantPersons", qualifiedByName = "withoutRelations")
+  Planet map(PlanetEntity src);
+  PlanetEntity map(Planet src);
 
+  Assignation map(AssignationEntity src);
   AssignationEntity map(Assignation src);
 
   @Named("withoutRelations")
@@ -34,6 +32,11 @@ public interface DbMapper {
   @Mapping(target = "relevantPersons", ignore = true)
   @Mapping(target = "affiliation", qualifiedByName = "withoutRelations")
   Planet mapWithoutRelations(PlanetEntity src);
+
+  @Mapping(target = "birthPlanet", qualifiedByName = "withoutRelations")
+  @Mapping(target = "affiliations", qualifiedByName = "withoutRelations")
+  @Mapping(target = "assignations", ignore = true)
+  Person mapWithoutRelations(PersonEntity src);
 
   @Named("withoutAssignee")
   @Mapping(target = "assignee", ignore = true)
