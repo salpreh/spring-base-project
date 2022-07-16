@@ -33,6 +33,7 @@ public interface DbMapper {
   @Mapping(target = "affiliation", qualifiedByName = "withoutRelations")
   Planet mapWithoutRelations(PlanetEntity src);
 
+  @Named("withoutRelations")
   @Mapping(target = "birthPlanet", qualifiedByName = "withoutRelations")
   @Mapping(target = "affiliations", qualifiedByName = "withoutRelations")
   @Mapping(target = "assignations", ignore = true)

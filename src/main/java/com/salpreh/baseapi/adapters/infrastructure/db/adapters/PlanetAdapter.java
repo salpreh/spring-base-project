@@ -41,7 +41,7 @@ public class PlanetAdapter implements PlanetDatasourcePort {
     PlanetEntity entity = PlanetEntity.builder().build();
     entity = processCommand(createCommand, entity);
 
-    return mapper.map(entity);
+    return mapper.map(planetRepository.save(entity));
   }
 
   @Override
@@ -51,7 +51,7 @@ public class PlanetAdapter implements PlanetDatasourcePort {
 
     processCommand(updateCommand, entity);
 
-    return mapper.map(entity);
+    return mapper.map(planetRepository.save(entity));
   }
 
   private PlanetEntity processCommand(PlanetCreateCommand command, PlanetEntity entity) {
