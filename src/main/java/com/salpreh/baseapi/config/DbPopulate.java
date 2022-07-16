@@ -2,11 +2,11 @@ package com.salpreh.baseapi.config;
 
 import com.github.javafaker.Faker;
 import com.salpreh.baseapi.domain.constants.RaceType;
-import com.salpreh.baseapi.models.*;
-import com.salpreh.baseapi.repositories.FactionRepository;
-import com.salpreh.baseapi.repositories.PersonRepository;
-import com.salpreh.baseapi.repositories.PlanetRepository;
-import com.salpreh.baseapi.repositories.SpaceshipRepository;
+import com.salpreh.baseapi.adapters.infrastructure.db.models.*;
+import com.salpreh.baseapi.adapters.infrastructure.db.repositories.FactionRepository;
+import com.salpreh.baseapi.adapters.infrastructure.db.repositories.PersonRepository;
+import com.salpreh.baseapi.adapters.infrastructure.db.repositories.PlanetRepository;
+import com.salpreh.baseapi.adapters.infrastructure.db.repositories.SpaceshipRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
