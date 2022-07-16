@@ -14,23 +14,23 @@ import java.util.Set;
 @NoArgsConstructor
 public class Planet {
 
-    private Long id;
-    private String name;
-    private Faction affiliation;
-    private Set<Person> relevantPersons = new HashSet<>();
+  private Long id;
+  private String name;
+  private Faction affiliation;
+  private Set<Person> relevantPersons = new HashSet<>();
 
-    public void addRelevantPerson(Person person) {
-        relevantPersons.add(person);
-    }
+  public void addRelevantPerson(Person person) {
+    relevantPersons.add(person);
+  }
 
-    public void removeRelevantPerson(Person person) {
-        relevantPersons.remove(person);
-    }
+  public void removeRelevantPerson(Person person) {
+    relevantPersons.remove(person);
+  }
 
-    public void setAffiliation(Faction affiliation) {
-        if (this.affiliation != null) this.affiliation.removePlanet(this);
-        if (affiliation != null) affiliation.addPlanet(this);
+  public void setAffiliation(Faction affiliation) {
+    if (this.affiliation != null) this.affiliation.removePlanet(this);
+    if (affiliation != null) affiliation.addPlanet(this);
 
-        this.affiliation = affiliation;
-    }
+    this.affiliation = affiliation;
+  }
 }
