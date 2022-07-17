@@ -5,7 +5,7 @@ import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
 import com.salpreh.baseapi.domain.models.Faction;
 import com.salpreh.baseapi.domain.models.commands.FactionCreateCommand;
-import com.salpreh.baseapi.domain.ports.infrastructure.FactionDatasourcePort;
+import com.salpreh.baseapi.domain.ports.application.FactionUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("faction")
 public class FactionController {
 
-  private final FactionDatasourcePort factionDatasourcePort;
+  private final FactionUseCase factionUseCase;
   private final ApiMapper mapper;
 
   @GetMapping
@@ -26,30 +26,30 @@ public class FactionController {
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE) int page,
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE_SIZE) int pageSize
   ) {
-    var data = factionDatasourcePort.findAll(PageRequest.of(page, pageSize));
+    var data = factionUseCase.findAll(PageRequest.of(page, pageSize));
 
     return mapper.map(data);
   }
 
   @GetMapping("{id}")
   public Faction get(@PathVariable long id) {
-    return factionDatasourcePort.findById(id)
+    return factionUseCase.findById(id)
       .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
   @PostMapping
   public Faction create(@RequestBody FactionCreateCommand command) {
-    return factionDatasourcePort.createFaction(command);
+    return factionUseCase.createFaction(command);
   }
 
   @PutMapping("{id}")
   public Faction update(@PathVariable long id, @RequestBody FactionCreateCommand command) {
-    return factionDatasourcePort.updateFaction(id, command);
+    return factionUseCase.updateFaction(id, command);
   }
 
   @DeleteMapping("{id}")
   public ResponseEntity<Void> delete(@PathVariable long id) {
-    factionDatasourcePort.deleteFaction(id);
+    factionUseCase.deleteFaction(id);
 
     return ResponseEntity.noContent()
       .build();

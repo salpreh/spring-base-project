@@ -5,7 +5,7 @@ import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
 import com.salpreh.baseapi.domain.models.Person;
 import com.salpreh.baseapi.domain.models.commands.PersonCreateCommand;
-import com.salpreh.baseapi.domain.ports.infrastructure.PersonDatasourcePort;
+import com.salpreh.baseapi.domain.ports.application.PersonUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/person")
 public class PersonController {
 
-  private final PersonDatasourcePort personDatasourcePort;
+  private final PersonUseCase personUseCase;
   private final ApiMapper mapper;
 
   @GetMapping
@@ -26,30 +26,30 @@ public class PersonController {
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE) int page,
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE_SIZE) int pageSize
   ) {
-    var data = personDatasourcePort.findAll(PageRequest.of(page, pageSize));
+    var data = personUseCase.findAll(PageRequest.of(page, pageSize));
 
     return mapper.map(data);
   }
 
   @GetMapping("{id}")
   public Person get(@PathVariable long id) {
-    return personDatasourcePort.findById(id)
+    return personUseCase.findById(id)
       .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
   @PostMapping
   public Person create(@RequestBody PersonCreateCommand command) {
-    return personDatasourcePort.createPerson(command);
+    return personUseCase.createPerson(command);
   }
 
   @PutMapping("{id}")
   public Person update(@PathVariable long id, @RequestBody PersonCreateCommand command) {
-    return personDatasourcePort.updatePerson(id, command);
+    return personUseCase.updatePerson(id, command);
   }
 
   @DeleteMapping("{id}")
   public ResponseEntity<Void> delete(@PathVariable long id) {
-    personDatasourcePort.deletePerson(id);
+    personUseCase.deletePerson(id);
 
     return ResponseEntity.noContent()
       .build();
