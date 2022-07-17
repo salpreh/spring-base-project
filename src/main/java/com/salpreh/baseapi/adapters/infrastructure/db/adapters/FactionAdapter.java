@@ -50,7 +50,7 @@ public class FactionAdapter implements FactionDatasourcePort {
   }
 
   @Override
-  public void deletePlanet(long id) {
+  public void deleteFaction(long id) {
     factionRepository.deleteById(id);
   }
 

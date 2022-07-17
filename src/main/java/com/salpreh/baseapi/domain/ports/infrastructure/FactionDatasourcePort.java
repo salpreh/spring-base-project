@@ -16,5 +16,5 @@ public interface FactionDatasourcePort {
 
   Faction updateFaction(long id, FactionCreateCommand updateCommand);
 
-  void deletePlanet(long id);
+  void deleteFaction(long id);
 }

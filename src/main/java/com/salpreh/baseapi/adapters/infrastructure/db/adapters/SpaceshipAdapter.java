@@ -63,7 +63,7 @@ public class SpaceshipAdapter implements SpaceshipDatasourcePort {
   }
 
   @Override
-  public void deletePlanet(long id) {
+  public void deleteSpaceship(long id) {
     spaceshipRepository.deleteById(id);
   }
 

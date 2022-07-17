@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -16,7 +15,7 @@ public class SpaceshipCreateCommand {
   private String name;
   private Long assignedPort;
   private Long affiliation;
-  private Set<AssignationDto> crew = new HashSet<>();
+  private Set<AssignationDto> crew;
 
   @Data
   @AllArgsConstructor(staticName = "build")

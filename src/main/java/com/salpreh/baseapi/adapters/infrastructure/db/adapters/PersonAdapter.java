@@ -79,7 +79,7 @@ public class PersonAdapter implements PersonDatasourcePort {
     }
     entity.setBirthPlanet(birthPlanet);
 
-    if (!command.getAffiliations().isEmpty()) {
+    if (command.getAffiliations() != null) {
       Set<FactionEntity> factions = command.getAffiliations().stream()
         .map(id -> factionRepository.findById(id).orElseThrow(() -> new RuntimeException("Unable to find faction")))
         .collect(Collectors.toSet());
@@ -87,7 +87,7 @@ public class PersonAdapter implements PersonDatasourcePort {
       entity.setAffiliations(factions);
     }
 
-    if (!command.getAssignations().isEmpty()) {
+    if (command.getAssignations() != null) {
       Set<AssignationEntity> assignations = command.getAssignations().stream()
         .map(dto -> {
           var spaceship = spaceshipRepository.findById(dto.getAssignation())

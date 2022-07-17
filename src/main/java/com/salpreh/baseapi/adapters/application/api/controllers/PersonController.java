@@ -15,11 +15,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/person")
 public class PersonController {
 
   private final PersonDatasourcePort personDatasourcePort;
   private final ApiMapper mapper;
 
+  @GetMapping
   public ApiPage<Person> getAll(
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE) int page,
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE_SIZE) int pageSize

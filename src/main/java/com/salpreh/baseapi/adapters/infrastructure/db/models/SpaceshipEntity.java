@@ -44,7 +44,7 @@ public class SpaceshipEntity {
 
   public void setCrew(Set<AssignationEntity> crew) {
     this.crew.clear();
-    crew.forEach(this::addCrew);
+    if (crew != null) crew.forEach(this::addCrew);
   }
 
   public void addCrew(AssignationEntity assignation) {

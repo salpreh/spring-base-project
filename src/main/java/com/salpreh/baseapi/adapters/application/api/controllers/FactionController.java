@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.adapters.application.api.controllers;
 
+import com.salpreh.baseapi.adapters.application.api.config.PaginationConfig;
 import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
 import com.salpreh.baseapi.domain.models.Faction;
@@ -22,8 +23,8 @@ public class FactionController {
 
   @GetMapping
   public ApiPage<Faction> getAll(
-    @RequestParam(defaultValue = "0") int page,
-    @RequestParam(defaultValue = "10") int pageSize
+    @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE) int page,
+    @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE_SIZE) int pageSize
   ) {
     var data = factionDatasourcePort.findAll(PageRequest.of(page, pageSize));
 
@@ -48,7 +49,7 @@ public class FactionController {
 
   @DeleteMapping("{id}")
   public ResponseEntity<Void> delete(@PathVariable long id) {
-    factionDatasourcePort.deletePlanet(id);
+    factionDatasourcePort.deleteFaction(id);
 
     return ResponseEntity.noContent()
       .build();

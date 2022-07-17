@@ -16,5 +16,5 @@ public interface SpaceshipDatasourcePort {
 
   Spaceship updateSpaceship(long id, SpaceshipCreateCommand updateCommand);
 
-  void deletePlanet(long id);
+  void deleteSpaceship(long id);
 }
