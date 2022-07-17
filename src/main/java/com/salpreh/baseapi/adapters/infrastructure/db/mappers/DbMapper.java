@@ -2,6 +2,7 @@ package com.salpreh.baseapi.adapters.infrastructure.db.mappers;
 
 import com.salpreh.baseapi.adapters.infrastructure.db.models.*;
 import com.salpreh.baseapi.domain.models.*;
+import com.salpreh.baseapi.domain.ports.infrastructure.PersonDatasourcePort;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -24,6 +25,12 @@ public interface DbMapper {
   @Mapping(target = "affiliatedSpaceships", qualifiedByName = "withoutRelations")
   Faction map(FactionEntity src);
   FactionEntity map(Faction src);
+
+  @Mapping(target = "birthPlanet", qualifiedByName = "withoutRelations")
+  @Mapping(target = "affiliations", qualifiedByName = "withoutRelations")
+  @Mapping(target = "assignations", qualifiedByName = "withoutAssignee")
+  Person map(PersonEntity src);
+  PersonEntity map(Person src);
 
   Assignation map(AssignationEntity src);
   AssignationEntity map(Assignation src);

@@ -59,6 +59,11 @@ public class PersonEntity {
     this.birthPlanet = birthPlanet;
   }
 
+  public void setAssignations(Set<AssignationEntity> assignations) {
+    this.assignations.clear();
+    if (assignations != null) assignations.forEach(this::addAssignation);
+  }
+
   public void addAssignation(AssignationEntity assignation) {
     assignation.setAssignee(this);
     assignations.add(assignation);
@@ -67,6 +72,11 @@ public class PersonEntity {
   public void removeAssignation(AssignationEntity assignation) {
     assignation.setAssignee(null);
     assignations.remove(assignation);
+  }
+
+  public void setAffiliations(Set<FactionEntity> affiliations) {
+    this.affiliations.clear();
+    if (affiliations != null) affiliations.forEach(this::addAffiliation);
   }
 
   public void addAffiliation(FactionEntity faction) {
