@@ -1,0 +1,1 @@
+docker build --build-arg PROFILE=dev -t salpreh/base-spring .
