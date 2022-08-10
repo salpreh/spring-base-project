@@ -2,6 +2,7 @@ package com.salpreh.baseapi.adapters.infrastructure.db.models;
 
 import com.salpreh.baseapi.domain.constants.RaceType;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,11 +10,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "persons")
+@Audited
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 public class PersonEntity {
 
   @Id

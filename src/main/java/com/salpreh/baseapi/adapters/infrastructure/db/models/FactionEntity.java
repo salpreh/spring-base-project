@@ -1,6 +1,7 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.models;
 
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,11 +9,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "factions")
+@Audited
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 public class FactionEntity {
 
   @Id

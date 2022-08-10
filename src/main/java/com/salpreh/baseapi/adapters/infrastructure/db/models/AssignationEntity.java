@@ -1,16 +1,17 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.models;
 
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "asignations")
+@Audited
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 public class AssignationEntity {
   @Id
   @Column
