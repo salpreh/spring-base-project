@@ -16,3 +16,5 @@ spring:
     hibernate.ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+
+    defer-datasource-initialization: true
