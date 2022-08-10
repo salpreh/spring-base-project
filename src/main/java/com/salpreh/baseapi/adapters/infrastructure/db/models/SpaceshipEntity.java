@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.models;
 
+import com.salpreh.baseapi.adapters.infrastructure.db.models.base.AuditedEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SpaceshipEntity {
+public class SpaceshipEntity extends AuditedEntity {
   @Id
   @Column
   @SequenceGenerator(name = "spaceship_pk_gen", sequenceName = "spaceship_pk_gen", allocationSize = 1)

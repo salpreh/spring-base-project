@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.models;
 
+import com.salpreh.baseapi.adapters.infrastructure.db.models.base.AuditedEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AssignationEntity {
+public class AssignationEntity extends AuditedEntity {
   @Id
   @Column
   @SequenceGenerator(name = "assignation_pk_gen", sequenceName = "assignation_pk_gen", allocationSize = 1)

@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.models;
 
+import com.salpreh.baseapi.adapters.infrastructure.db.models.base.AuditedEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlanetEntity {
+public class PlanetEntity extends AuditedEntity {
 
   @Id
   @Column

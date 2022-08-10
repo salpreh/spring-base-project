@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.models;
 
+import com.salpreh.baseapi.adapters.infrastructure.db.models.base.AuditedEntity;
 import com.salpreh.baseapi.domain.constants.RaceType;
 import lombok.*;
 
@@ -14,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PersonEntity {
+public class PersonEntity extends AuditedEntity {
 
   @Id
   @Column
