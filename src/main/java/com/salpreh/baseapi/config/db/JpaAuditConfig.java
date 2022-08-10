@@ -1,4 +1,4 @@
-package com.salpreh.baseapi.config;
+package com.salpreh.baseapi.config.db;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
