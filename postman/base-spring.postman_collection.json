@@ -1,0 +1,464 @@
+{
+	"info": {
+		"_postman_id": "f157a6f7-b397-4c7c-82ce-cb3cbf55e0b1",
+		"name": "base-spring",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4371815"
+	},
+	"item": [
+		{
+			"name": "spaceships",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/spaceship/3",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"spaceship",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/spaceship",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"spaceship"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/spaceship/3",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"spaceship",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Aurora\",\n    \"affiliation\": 1,\n    \"crew\": [\n        {\n            \"position\": \"Pilot\",\n            \"assignee\": 6\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{base_path}}/spaceship",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"spaceship"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tokio SVV\",\n    \"affiliation\": 2,\n    \"crew\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{base_path}}/spaceship/3",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"spaceship",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "planets",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/planet/1",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"planet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/planet",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"planet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Caronte\",\n    \"affiliation\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{base_path}}/planet",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"planet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Palaven\",\n    \"affiliation\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{base_path}}/planet/5",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"planet",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/planet/5",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"planet",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "factions",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/faction/1",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"faction",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/faction",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"faction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Cerberus\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{base_path}}/faction",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"faction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Andromeda Initiative\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{base_path}}/faction/4",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"faction",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/faction/4",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"faction",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "persons",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/person/1",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"person",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/person?page=1&pageSize=5",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"person"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jack\",\n    \"alias\": \"Illusive Man\",\n    \"age\": 54,\n    \"race\": \"HUMAN\",\n    \"birthPlanet\": 1,\n    \"affiliations\": [],\n    \"assignations\": [\n        {\n            \"position\": \"General\",\n            \"assignation\": 1\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{base_path}}/person",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Steven Hackett\",\n    \"alias\": \"Admiral Hackett\",\n    \"age\": 52,\n    \"race\": \"HUMAN\",\n    \"birthPlanet\": 1,\n    \"affiliations\": [1],\n    \"assignations\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{base_path}}/person/12",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"person",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{base_path}}/person/12",
+							"host": [
+								"{{host}}{{base_path}}"
+							],
+							"path": [
+								"person",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
