@@ -1,6 +1,5 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.adapters;
 
-import com.salpreh.baseapi.adapters.infrastructure.db.helpers.EntityMapping;
 import com.salpreh.baseapi.adapters.infrastructure.db.mappers.DbMapper;
 import com.salpreh.baseapi.adapters.infrastructure.db.models.*;
 import com.salpreh.baseapi.adapters.infrastructure.db.repositories.FactionRepository;

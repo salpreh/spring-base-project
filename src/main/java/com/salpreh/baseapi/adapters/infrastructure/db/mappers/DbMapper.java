@@ -2,16 +2,18 @@ package com.salpreh.baseapi.adapters.infrastructure.db.mappers;
 
 import com.salpreh.baseapi.adapters.infrastructure.db.models.*;
 import com.salpreh.baseapi.domain.models.*;
-import com.salpreh.baseapi.domain.models.commons.RevisionData;
-import com.salpreh.baseapi.domain.ports.infrastructure.PersonDatasourcePort;
+import com.salpreh.baseapi.domain.models.revisions.RevisionData;
+import com.salpreh.baseapi.domain.models.revisions.RevisionModel;
 import org.hibernate.envers.DefaultRevisionEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.springframework.data.util.Pair;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.function.Function;
 
 @Mapper(componentModel = "spring")
 public interface DbMapper {
@@ -77,6 +79,14 @@ public interface DbMapper {
   @Mapping(target = "assignee.birthPlanet", qualifiedByName = "withoutRelations")
   @Mapping(target = "assignee.affiliations", qualifiedByName = "withoutRelations")
   Assignation mapWithoutAssigned(AssignationEntity src);
+
+  default <T, S> RevisionModel<T> map(Pair<S, DefaultRevisionEntity> src, Function<S, T> mapping) {
+    return RevisionModel.build(
+      mapping.apply(src.getFirst()),
+      Long.valueOf(src.getSecond().getId()),
+      LocalDateTime.ofInstant(Instant.ofEpochMilli(src.getSecond().getTimestamp()), ZoneId.systemDefault())
+    );
+  }
 
   default RevisionData map(DefaultRevisionEntity src) {
     return RevisionData.of(
