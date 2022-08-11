@@ -2,10 +2,16 @@ package com.salpreh.baseapi.adapters.infrastructure.db.mappers;
 
 import com.salpreh.baseapi.adapters.infrastructure.db.models.*;
 import com.salpreh.baseapi.domain.models.*;
+import com.salpreh.baseapi.domain.models.commons.RevisionData;
 import com.salpreh.baseapi.domain.ports.infrastructure.PersonDatasourcePort;
+import org.hibernate.envers.DefaultRevisionEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Mapper(componentModel = "spring")
 public interface DbMapper {
@@ -71,4 +77,11 @@ public interface DbMapper {
   @Mapping(target = "assignee.birthPlanet", qualifiedByName = "withoutRelations")
   @Mapping(target = "assignee.affiliations", qualifiedByName = "withoutRelations")
   Assignation mapWithoutAssigned(AssignationEntity src);
+
+  default RevisionData map(DefaultRevisionEntity src) {
+    return RevisionData.of(
+      Long.valueOf(src.getId()),
+      LocalDateTime.ofInstant(Instant.ofEpochMilli(src.getTimestamp()), ZoneId.systemDefault())
+    );
+  }
 }
