@@ -1,14 +1,8 @@
 package com.salpreh.baseapi.domain.config;
 
 import com.salpreh.baseapi.domain.helpers.ProxyUtils;
-import com.salpreh.baseapi.domain.ports.application.FactionUseCase;
-import com.salpreh.baseapi.domain.ports.application.PersonUseCase;
-import com.salpreh.baseapi.domain.ports.application.PlanetUseCase;
-import com.salpreh.baseapi.domain.ports.application.SpaceshipUseCase;
-import com.salpreh.baseapi.domain.ports.infrastructure.FactionDatasourcePort;
-import com.salpreh.baseapi.domain.ports.infrastructure.PersonDatasourcePort;
-import com.salpreh.baseapi.domain.ports.infrastructure.PlanetDatasourcePort;
-import com.salpreh.baseapi.domain.ports.infrastructure.SpaceshipDatasourcePort;
+import com.salpreh.baseapi.domain.ports.application.*;
+import com.salpreh.baseapi.domain.ports.infrastructure.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,5 +27,10 @@ public class PassThroughServicesConfig {
   @Bean
   public SpaceshipUseCase spaceshipUseCase(SpaceshipDatasourcePort spaceshipDatasourcePort) {
     return ProxyUtils.createPassThroughProxy(SpaceshipUseCase.class, spaceshipDatasourcePort);
+  }
+
+  @Bean
+  public PersonRevisionUseCase personRevisionUseCase(PersonRevisionPort personRevisionPort) {
+    return ProxyUtils.createPassThroughProxy(PersonRevisionUseCase.class, personRevisionPort);
   }
 }
