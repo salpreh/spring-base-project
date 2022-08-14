@@ -60,7 +60,7 @@ public class PersonEntity {
   }
 
   public void setAssignations(Set<AssignationEntity> assignations) {
-    this.assignations.clear();
+    this.assignations.forEach(this::removeAssignation);
     if (assignations != null) assignations.forEach(this::addAssignation);
   }
 
@@ -75,7 +75,7 @@ public class PersonEntity {
   }
 
   public void setAffiliations(Set<FactionEntity> affiliations) {
-    this.affiliations.clear();
+    this.affiliations.forEach(this::removeAffiliation);
     if (affiliations != null) affiliations.forEach(this::addAffiliation);
   }
 
