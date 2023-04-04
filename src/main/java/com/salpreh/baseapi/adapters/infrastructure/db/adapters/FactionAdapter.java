@@ -21,7 +21,7 @@ public class FactionAdapter implements FactionDatasourcePort {
   private final DbMapper mapper;
 
   @Override
-  public Optional<Faction> findById(Long id) {
+  public Optional<Faction> findById(long id) {
     return factionRepository.findById(id)
       .map(mapper::map);
   }
