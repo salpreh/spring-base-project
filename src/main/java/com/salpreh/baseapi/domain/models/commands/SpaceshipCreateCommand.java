@@ -1,5 +1,7 @@
 package com.salpreh.baseapi.domain.models.commands;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +14,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SpaceshipCreateCommand {
+  @NotEmpty
+  @Pattern(regexp = "^[a-zA-Z0-9\\-\\s]+$")
   private String name;
   private Long assignedPort;
   private Long affiliation;
