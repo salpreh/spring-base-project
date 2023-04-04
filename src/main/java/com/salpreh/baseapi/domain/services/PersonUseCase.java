@@ -5,12 +5,15 @@ import com.salpreh.baseapi.domain.models.commands.PersonCreateCommand;
 import com.salpreh.baseapi.domain.ports.application.PersonPort;
 import com.salpreh.baseapi.domain.ports.infrastructure.PersonDatasourcePort;
 import java.util.Optional;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class PersonUseCase implements PersonPort {
 
@@ -27,12 +30,12 @@ public class PersonUseCase implements PersonPort {
   }
 
   @Override
-  public Person createPerson(PersonCreateCommand createCommand) {
+  public Person createPerson(@Valid PersonCreateCommand createCommand) {
     return personDatasourcePort.createPerson(createCommand);
   }
 
   @Override
-  public Person updatePerson(long id, PersonCreateCommand updateCommand) {
+  public Person updatePerson(long id, @Valid PersonCreateCommand updateCommand) {
     return personDatasourcePort.updatePerson(id, updateCommand);
   }
 

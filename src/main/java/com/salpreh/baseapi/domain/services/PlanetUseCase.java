@@ -5,12 +5,15 @@ import com.salpreh.baseapi.domain.models.commands.PlanetCreateCommand;
 import com.salpreh.baseapi.domain.ports.application.PlanetPort;
 import com.salpreh.baseapi.domain.ports.infrastructure.PlanetDatasourcePort;
 import java.util.Optional;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class PlanetUseCase implements PlanetPort {
 
@@ -28,12 +31,12 @@ public class PlanetUseCase implements PlanetPort {
   }
 
   @Override
-  public Planet createPlanet(PlanetCreateCommand createCommand) {
+  public Planet createPlanet(@Valid PlanetCreateCommand createCommand) {
     return planetDatasourcePort.createPlanet(createCommand);
   }
 
   @Override
-  public Planet updatePlanet(long id, PlanetCreateCommand updateCommand) {
+  public Planet updatePlanet(long id, @Valid PlanetCreateCommand updateCommand) {
     return planetDatasourcePort.updatePlanet(id, updateCommand);
   }
 

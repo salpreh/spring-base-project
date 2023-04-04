@@ -5,12 +5,15 @@ import com.salpreh.baseapi.domain.models.commands.FactionCreateCommand;
 import com.salpreh.baseapi.domain.ports.application.FactionPort;
 import com.salpreh.baseapi.domain.ports.infrastructure.FactionDatasourcePort;
 import java.util.Optional;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class FactionUseCase implements FactionPort {
 
@@ -27,12 +30,12 @@ public class FactionUseCase implements FactionPort {
   }
 
   @Override
-  public Faction createFaction(FactionCreateCommand createCommand) {
+  public Faction createFaction(@Valid FactionCreateCommand createCommand) {
     return factionDatasourcePort.createFaction(createCommand);
   }
 
   @Override
-  public Faction updateFaction(long id, FactionCreateCommand updateCommand) {
+  public Faction updateFaction(long id, @Valid FactionCreateCommand updateCommand) {
     return factionDatasourcePort.updateFaction(id, updateCommand);
   }
 
