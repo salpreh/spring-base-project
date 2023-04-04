@@ -37,6 +37,12 @@ public class SpaceshipAdapter implements SpaceshipDatasourcePort {
   }
 
   @Override
+  public Optional<Spaceship> findByName(String name) {
+    return spaceshipRepository.findByName(name)
+      .map(mapper::map);
+  }
+
+  @Override
   public Page<Spaceship> findAll(Pageable pageable) {
     return spaceshipRepository.findAll(pageable)
       .map(mapper::map);

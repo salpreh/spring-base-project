@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface SpaceshipDatasourcePort {
   Optional<Spaceship> findById(long id);
+  Optional<Spaceship> findByName(String name);
 
   Page<Spaceship> findAll(Pageable pageable);
 
