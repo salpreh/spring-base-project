@@ -2,6 +2,7 @@ package com.salpreh.baseapi.adapters.infrastructure.db.mappers;
 
 import com.salpreh.baseapi.adapters.infrastructure.db.models.*;
 import com.salpreh.baseapi.domain.models.*;
+import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand.SpaceshipRegistrationDto;
 import com.salpreh.baseapi.domain.ports.infrastructure.PersonDatasourcePort;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -14,6 +15,11 @@ public interface DbMapper {
   @Mapping(target = "crew", qualifiedByName = "withoutAssigned")
   Spaceship map(SpaceshipEntity src);
   SpaceshipEntity map(Spaceship src);
+
+  SpaceshipRegistration map(SpaceshipRegistrationEntity src);
+  SpaceshipRegistrationEntity map(SpaceshipRegistration src);
+  @Mapping(target = "registrationDate", defaultExpression = "java(java.time.OffsetDateTime.now())")
+  SpaceshipRegistrationEntity map(SpaceshipRegistrationDto src);
 
   @Mapping(target = "affiliation", qualifiedByName = "withoutRelations")
   @Mapping(target = "relevantPersons", qualifiedByName = "withoutRelations")
