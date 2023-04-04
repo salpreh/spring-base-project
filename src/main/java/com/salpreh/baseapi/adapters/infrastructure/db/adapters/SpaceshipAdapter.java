@@ -1,8 +1,11 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.adapters;
 
-import com.salpreh.baseapi.adapters.infrastructure.db.helpers.EntityMapping;
 import com.salpreh.baseapi.adapters.infrastructure.db.mappers.DbMapper;
-import com.salpreh.baseapi.adapters.infrastructure.db.models.*;
+import com.salpreh.baseapi.adapters.infrastructure.db.models.AssignationEntity;
+import com.salpreh.baseapi.adapters.infrastructure.db.models.FactionEntity;
+import com.salpreh.baseapi.adapters.infrastructure.db.models.PersonEntity;
+import com.salpreh.baseapi.adapters.infrastructure.db.models.PlanetEntity;
+import com.salpreh.baseapi.adapters.infrastructure.db.models.SpaceshipEntity;
 import com.salpreh.baseapi.adapters.infrastructure.db.repositories.FactionRepository;
 import com.salpreh.baseapi.adapters.infrastructure.db.repositories.PersonRepository;
 import com.salpreh.baseapi.adapters.infrastructure.db.repositories.PlanetRepository;
@@ -10,15 +13,14 @@ import com.salpreh.baseapi.adapters.infrastructure.db.repositories.SpaceshipRepo
 import com.salpreh.baseapi.domain.models.Spaceship;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand;
 import com.salpreh.baseapi.domain.ports.infrastructure.SpaceshipDatasourcePort;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

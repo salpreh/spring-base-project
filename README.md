@@ -10,3 +10,4 @@ This is just some basic Spring Boot project with some DB models and controller. 
 ## Branches index
 - **feature/db-audit**: Audited DB access with Spring facilities and Basic Auth with Spring Security.
 - **feature/hibernate-envers**: Entity versioning with Hibernate Envers + API access to Persons entity revisions.
+- **feature/validation**: Validation of entities and params with Hibernate Validator and Spring integration.
