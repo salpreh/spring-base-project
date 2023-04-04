@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.domain.models;
 
+import com.salpreh.baseapi.domain.config.validations.constraints.SpaceshipName;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -19,7 +20,7 @@ public class Spaceship {
   private Long id;
 
   @NotEmpty
-  @Pattern(regexp = "^[a-zA-Z0-9\\-\\s]+$")
+  @SpaceshipName
   private String name;
 
   @Valid

@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.domain.models.commands;
 
+import com.salpreh.baseapi.domain.config.validations.constraints.SpaceshipName;
 import java.time.OffsetDateTime;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -16,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class SpaceshipCreateCommand {
   @NotEmpty
-  @Pattern(regexp = "^[a-zA-Z0-9\\-\\s]+$")
+  @SpaceshipName
   private String name;
   private Long assignedPort;
   private Long affiliation;
