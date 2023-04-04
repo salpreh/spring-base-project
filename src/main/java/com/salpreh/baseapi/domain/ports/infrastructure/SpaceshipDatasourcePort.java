@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface SpaceshipDatasourcePort {
-  Optional<Spaceship> findById(Long id);
+  Optional<Spaceship> findById(long id);
 
   Page<Spaceship> findAll(Pageable pageable);
 

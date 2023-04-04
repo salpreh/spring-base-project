@@ -25,7 +25,7 @@ public class PlanetAdapter implements PlanetDatasourcePort {
   private final DbMapper mapper;
 
   @Override
-  public Optional<Planet> findById(Long id) {
+  public Optional<Planet> findById(long id) {
     return planetRepository.findById(id)
       .map(mapper::map);
   }

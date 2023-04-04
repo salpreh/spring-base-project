@@ -5,7 +5,7 @@ import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
 import com.salpreh.baseapi.domain.models.Spaceship;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand;
-import com.salpreh.baseapi.domain.ports.application.SpaceshipUseCase;
+import com.salpreh.baseapi.domain.ports.application.SpaceshipPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/spaceship")
 public class SpaceshipController {
 
-  private final SpaceshipUseCase spaceshipUseCase;
+  private final SpaceshipPort spaceshipUseCase;
   private final ApiMapper mapper;
 
   @GetMapping

@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface FactionDatasourcePort {
-  Optional<Faction> findById(Long id);
+  Optional<Faction> findById(long id);
 
   Page<Faction> findAll(Pageable pageable);
 
