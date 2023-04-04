@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.validation.ConstraintViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
@@ -27,6 +28,16 @@ public class ExceptionHandlerConfig {
   public ResponseEntity<ErrorDto> handleException(ConstraintViolationException ex) {
     List<String> constraintViolations = ex.getConstraintViolations().stream()
       .map(cv -> String.format("%s: %s", cv.getPropertyPath(), cv.getMessage()))
+      .collect(Collectors.toList());
+
+    return ResponseEntity.badRequest()
+      .body(ErrorDto.of("Bad request values", constraintViolations));
+  }
+
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public ResponseEntity<ErrorDto> handleException(MethodArgumentNotValidException ex) {
+    List<String> constraintViolations = ex.getBindingResult().getFieldErrors().stream()
+      .map(fe -> String.format("%s: %s", fe.getField(), fe.getDefaultMessage()))
       .collect(Collectors.toList());
 
     return ResponseEntity.badRequest()
