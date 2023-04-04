@@ -33,7 +33,7 @@ public class PersonAdapter implements PersonDatasourcePort {
   private final DbMapper mapper;
 
   @Override
-  public Optional<Person> findById(Long id) {
+  public Optional<Person> findById(long id) {
     return personRepository.findById(id)
       .map(mapper::map);
   }
