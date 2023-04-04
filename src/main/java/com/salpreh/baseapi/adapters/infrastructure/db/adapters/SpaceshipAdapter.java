@@ -34,7 +34,7 @@ public class SpaceshipAdapter implements SpaceshipDatasourcePort {
   private final DbMapper mapper;
 
   @Override
-  public Optional<Spaceship> findById(Long id) {
+  public Optional<Spaceship> findById(long id) {
     return spaceshipRepository.findById(id)
       .map(mapper::map);
   }
