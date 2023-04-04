@@ -46,6 +46,7 @@ public class SpaceshipAdapter implements SpaceshipDatasourcePort {
   @Transactional
   public Spaceship createSpaceship(SpaceshipCreateCommand createCommand) {
     SpaceshipEntity entity = SpaceshipEntity.builder().build();
+    entity.setRegistration(mapper.map(createCommand.getRegistration()));
     entity = processCommand(createCommand, entity);
 
     return mapper.map(spaceshipRepository.save(entity));

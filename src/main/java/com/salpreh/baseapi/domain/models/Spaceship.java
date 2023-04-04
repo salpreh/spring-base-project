@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.domain.models;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,8 @@ public class Spaceship {
   @Pattern(regexp = "^[a-zA-Z0-9\\-\\s]+$")
   private String name;
 
+  @Valid
+  private SpaceshipRegistration registration;
   private Planet assignedPort;
   private Faction affiliation;
   private Set<Assignation> crew = new HashSet<>();
