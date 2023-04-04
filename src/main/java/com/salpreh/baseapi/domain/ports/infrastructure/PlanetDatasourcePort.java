@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface PlanetDatasourcePort {
-  Optional<Planet> findById(Long id);
+  Optional<Planet> findById(long id);
 
   Page<Planet> findAll(Pageable pageable);
 

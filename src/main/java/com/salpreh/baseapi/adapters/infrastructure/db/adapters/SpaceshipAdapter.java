@@ -1,6 +1,5 @@
 package com.salpreh.baseapi.adapters.infrastructure.db.adapters;
 
-import com.salpreh.baseapi.adapters.infrastructure.db.helpers.EntityMapping;
 import com.salpreh.baseapi.adapters.infrastructure.db.mappers.DbMapper;
 import com.salpreh.baseapi.adapters.infrastructure.db.models.*;
 import com.salpreh.baseapi.adapters.infrastructure.db.repositories.FactionRepository;
@@ -32,7 +31,7 @@ public class SpaceshipAdapter implements SpaceshipDatasourcePort {
   private final DbMapper mapper;
 
   @Override
-  public Optional<Spaceship> findById(Long id) {
+  public Optional<Spaceship> findById(long id) {
     return spaceshipRepository.findById(id)
       .map(mapper::map);
   }
