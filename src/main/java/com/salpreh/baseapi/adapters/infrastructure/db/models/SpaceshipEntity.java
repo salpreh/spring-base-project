@@ -23,6 +23,10 @@ public class SpaceshipEntity {
   @Column(unique = true)
   private String name;
 
+  @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @JoinColumn(name = "registration_id")
+  private SpaceshipRegistrationEntity registration;
+
   @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinColumn(name = "port_planet_id")
   private PlanetEntity assignedPort;

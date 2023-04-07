@@ -34,8 +34,14 @@ public class SpaceshipAdapter implements SpaceshipDatasourcePort {
   private final DbMapper mapper;
 
   @Override
-  public Optional<Spaceship> findById(Long id) {
+  public Optional<Spaceship> findById(long id) {
     return spaceshipRepository.findById(id)
+      .map(mapper::map);
+  }
+
+  @Override
+  public Optional<Spaceship> findByName(String name) {
+    return spaceshipRepository.findByName(name)
       .map(mapper::map);
   }
 
@@ -49,6 +55,7 @@ public class SpaceshipAdapter implements SpaceshipDatasourcePort {
   @Transactional
   public Spaceship createSpaceship(SpaceshipCreateCommand createCommand) {
     SpaceshipEntity entity = SpaceshipEntity.builder().build();
+    entity.setRegistration(mapper.map(createCommand.getRegistration()));
     entity = processCommand(createCommand, entity);
 
     return mapper.map(spaceshipRepository.save(entity));

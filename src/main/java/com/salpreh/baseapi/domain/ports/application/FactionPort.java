@@ -1,20 +1,16 @@
-package com.salpreh.baseapi.domain.ports.infrastructure;
+package com.salpreh.baseapi.domain.ports.application;
 
 import com.salpreh.baseapi.domain.models.Faction;
 import com.salpreh.baseapi.domain.models.commands.FactionCreateCommand;
+import java.util.Optional;
+import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Optional;
-
-public interface FactionDatasourcePort {
+public interface FactionPort {
   Optional<Faction> findById(long id);
-
   Page<Faction> findAll(Pageable pageable);
-
-  Faction createFaction(FactionCreateCommand createCommand);
-
-  Faction updateFaction(long id, FactionCreateCommand updateCommand);
-
+  Faction createFaction(@Valid FactionCreateCommand createCommand);
+  Faction updateFaction(long id, @Valid FactionCreateCommand updateCommand);
   void deleteFaction(long id);
 }

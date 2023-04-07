@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.domain.models;
 
+import javax.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.util.HashSet;
@@ -12,7 +13,10 @@ import java.util.Set;
 public class Faction {
 
   private Long id;
+
+  @NotEmpty
   private String name;
+
   private Set<Planet> affiliatedPlanets = new HashSet<>();
   private Set<Person> affiliatedPersons = new HashSet<>();
   private Set<Spaceship> affiliatedSpaceships = new HashSet<>();
