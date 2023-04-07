@@ -27,6 +27,7 @@ public class Spaceship {
   private SpaceshipRegistration registration;
   private Planet assignedPort;
   private Faction affiliation;
+  @Builder.Default
   private Set<Assignation> crew = new HashSet<>();
 
   public void setAffiliation(Faction faction) {
