@@ -9,6 +9,9 @@ import com.salpreh.baseapi.domain.models.Spaceship;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand.AssignationDto;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand.SpaceshipRegistrationDto;
+import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
+import io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider;
+import io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseType;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 import java.util.Set;
@@ -23,6 +26,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 @ExtendWith(SpringExtension.class)
+@AutoConfigureEmbeddedDatabase(type = DatabaseType.POSTGRES, provider = DatabaseProvider.DOCKER)
 @SpringBootTest(classes = DbAdapterApplication.class)
 class SpaceshipAdapterITTest {
 
