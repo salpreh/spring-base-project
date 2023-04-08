@@ -3,7 +3,6 @@ package com.salpreh.baseapi.adapters.application.api.controllers;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -16,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salpreh.baseapi.adapters.application.api.config.ExceptionHandlerConfig;
-import com.salpreh.baseapi.config.test.MappersTestConfig;
+import com.salpreh.baseapi.adapters.application.api.config.test.MappersTestConfig;
 import com.salpreh.baseapi.domain.models.Faction;
 import com.salpreh.baseapi.domain.models.Planet;
 import com.salpreh.baseapi.domain.models.Spaceship;
@@ -24,7 +23,7 @@ import com.salpreh.baseapi.domain.models.SpaceshipRegistration;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand.SpaceshipRegistrationDto;
 import com.salpreh.baseapi.domain.ports.application.SpaceshipPort;
-import com.salpreh.baseapi.helpers.test.SpaceApiFaker;
+import com.salpreh.baseapi.adapters.application.api.helpers.test.SpaceApiFaker;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
