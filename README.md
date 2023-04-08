@@ -11,3 +11,7 @@ This is just some basic Spring Boot project with some DB models and controller. 
 - **feature/db-audit**: Audited DB access with Spring facilities and Basic Auth with Spring Security.
 - **feature/hibernate-envers**: Entity versioning with Hibernate Envers + API access to Persons entity revisions.
 - **feature/validation**: Validation of entities and params with Hibernate Validator and Spring integration.
+- **feature/integration-tests**: Integration tests with Spring Boot and Docker containers.
+  - MvcTest: Testing controllers with Spring MVC Test.
+  - JpaTest: Testing JPA repositories with Spring Data JPA Test.
+  - SpringBootTest: Testing the whole application with Spring Boot Test.
