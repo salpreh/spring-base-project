@@ -1,4 +1,4 @@
-package com.salpreh.baseapi.config.test;
+package com.salpreh.baseapi.adapters.application.api.config.test;
 
 import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import org.mapstruct.factory.Mappers;

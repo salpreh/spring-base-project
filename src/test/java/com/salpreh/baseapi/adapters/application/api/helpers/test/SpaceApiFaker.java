@@ -1,4 +1,4 @@
-package com.salpreh.baseapi.helpers.test;
+package com.salpreh.baseapi.adapters.application.api.helpers.test;
 
 import com.salpreh.baseapi.domain.models.Assignation;
 import com.salpreh.baseapi.domain.models.Faction;
