@@ -7,11 +7,21 @@ spring:
   application.name: base
 
   datasource:
-    url: localhost:5432/postgres
-    username: postgres
-    password: postgres
+    url: jdbc:h2:mem:experiment
+    username: sa
+    password: secret
 
   jpa:
     hibernate.ddl-auto: update
     show-sql: true
-    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
+#
+#  datasource:
+#    url: localhost:5432/postgres
+#    username: postgres
+#    password: postgres
+#
+#  jpa:
+#    hibernate.ddl-auto: update
+#    show-sql: true
+#    database-platform: org.hibernate.dialect.PostgreSQL95Dialect

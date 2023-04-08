@@ -2,9 +2,9 @@ package com.salpreh.baseapi.adapters.infrastructure.db.adapters;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.salpreh.baseapi.DbAdapterApplication;
 import com.salpreh.baseapi.adapters.infrastructure.db.models.SpaceshipEntity;
 import com.salpreh.baseapi.adapters.infrastructure.db.repositories.SpaceshipRepository;
+import com.salpreh.baseapi.bootstrap.DbAdapterApplication;
 import com.salpreh.baseapi.domain.models.Spaceship;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand;
 import com.salpreh.baseapi.domain.models.commands.SpaceshipCreateCommand.AssignationDto;
@@ -21,10 +21,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+@ActiveProfiles("integration")
 @ExtendWith(SpringExtension.class)
 @AutoConfigureEmbeddedDatabase(type = DatabaseType.POSTGRES, provider = DatabaseProvider.DOCKER)
 @SpringBootTest(classes = DbAdapterApplication.class)
