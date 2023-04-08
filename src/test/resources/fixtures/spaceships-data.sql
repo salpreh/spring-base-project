@@ -32,4 +32,5 @@ INSERT INTO assignations (id, position, assignation_spaceship_id, assignee_perso
 INSERT INTO assignations (id, position, assignation_spaceship_id, assignee_person_id) VALUES (2, 'Strike team', 2, 2);
 INSERT INTO assignations (id, position, assignation_spaceship_id, assignee_person_id) VALUES (3, 'Chef', 2, 3);
 INSERT INTO assignations (id, position, assignation_spaceship_id, assignee_person_id) VALUES (4, 'Biologist', 2, 4);
+INSERT INTO assignations (id, position, assignation_spaceship_id, assignee_person_id) VALUES (5, 'Commander', 2, 1);
 ALTER SEQUENCE assignation_pk_gen RESTART WITH 5;
