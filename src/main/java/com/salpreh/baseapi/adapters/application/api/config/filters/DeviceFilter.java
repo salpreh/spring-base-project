@@ -31,12 +31,13 @@ public class DeviceFilter implements Filter {
 
     try {
       DeviceContextHolder.setDeviceId(Long.parseLong(deviceId));
+      filterChain.doFilter(servletRequest, servletResponse);
+
     } catch (NumberFormatException e) {
       log.warn("Unable to parse device id: {}", deviceId);
+
+    } finally {
+      DeviceContextHolder.clear();
     }
-
-    filterChain.doFilter(servletRequest, servletResponse);
-
-    DeviceContextHolder.clear();
   }
 }
