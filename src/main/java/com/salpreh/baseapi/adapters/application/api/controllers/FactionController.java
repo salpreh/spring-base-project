@@ -5,7 +5,7 @@ import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
 import com.salpreh.baseapi.domain.models.Faction;
 import com.salpreh.baseapi.domain.models.commands.FactionCreateCommand;
-import com.salpreh.baseapi.domain.ports.application.FactionUseCase;
+import com.salpreh.baseapi.domain.ports.application.FactionPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("faction")
 public class FactionController {
 
-  private final FactionUseCase factionUseCase;
+  private final FactionPort factionUseCase;
   private final ApiMapper mapper;
 
   @GetMapping
