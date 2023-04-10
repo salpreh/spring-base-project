@@ -15,3 +15,6 @@ This is just some basic Spring Boot project with some DB models and controller. 
   - MvcTest: Testing controllers with Spring MVC Test.
   - JpaTest: Testing JPA repositories with Spring Data JPA Test.
   - SpringBootTest: Testing the whole application with Spring Boot Test.
+- **feature/request-context**: Request context with Spring mechanisms.
+  - Static ThreadLocal: Using a static ThreadLocal to store the request context.
+  - Spring Bean: Using a Spring Bean to store the request context.
