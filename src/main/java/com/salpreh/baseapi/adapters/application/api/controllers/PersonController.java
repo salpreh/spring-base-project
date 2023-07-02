@@ -1,8 +1,13 @@
 package com.salpreh.baseapi.adapters.application.api.controllers;
 
+import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.BASE_PATH;
+import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.PERSON_PATH;
+
 import com.salpreh.baseapi.adapters.application.api.config.PaginationConfig;
+import com.salpreh.baseapi.adapters.application.api.config.PathConfig;
 import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
+import com.salpreh.baseapi.adapters.application.api.services.ApiMetricService;
 import com.salpreh.baseapi.domain.models.Person;
 import com.salpreh.baseapi.domain.models.commands.PersonCreateCommand;
 import com.salpreh.baseapi.domain.ports.application.PersonPort;
@@ -23,10 +28,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/person")
+@RequestMapping(PERSON_PATH)
 public class PersonController {
 
   private final PersonPort personUseCase;
+  private final ApiMetricService metricService;
   private final ApiMapper mapper;
 
   @GetMapping
@@ -34,6 +40,7 @@ public class PersonController {
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE) int page,
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE_SIZE) int pageSize
   ) {
+    metricService.registerPageRequest(PERSON_PATH);
     var data = personUseCase.findAll(PageRequest.of(page, pageSize));
 
     return mapper.map(data);
@@ -41,6 +48,7 @@ public class PersonController {
 
   @GetMapping("{id}")
   public Person get(@PathVariable long id) {
+    metricService.registerItemRequest(PERSON_PATH);
     return personUseCase.findById(id)
       .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
