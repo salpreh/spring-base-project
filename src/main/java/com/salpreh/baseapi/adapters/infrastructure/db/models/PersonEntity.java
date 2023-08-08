@@ -14,6 +14,48 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@NamedEntityGraph(
+  name = "full-person",
+  attributeNodes = {
+    @NamedAttributeNode("name"),
+    @NamedAttributeNode("alias"),
+    @NamedAttributeNode("age"),
+    @NamedAttributeNode("race"),
+    @NamedAttributeNode(value = "birthPlanet", subgraph = "person-planet-subgraph"),
+    @NamedAttributeNode(value = "affiliations", subgraph = "faction-subgraph"),
+    @NamedAttributeNode(value = "assignations", subgraph = "person-assignation-subgraph")
+  },
+  subgraphs = {
+    @NamedSubgraph(
+      name = "person-planet-subgraph",
+      attributeNodes = {
+        @NamedAttributeNode("name"),
+        @NamedAttributeNode(value = "affiliation", subgraph = "faction-subgraph")
+      }
+    ),
+    @NamedSubgraph(
+      name = "person-assignation-subgraph",
+      attributeNodes = {
+        @NamedAttributeNode("position"),
+        @NamedAttributeNode(value = "assignation", subgraph = "person-spaceship-subgraph")
+      }
+    ),
+    @NamedSubgraph(
+      name = "person-spaceship-subgraph",
+      attributeNodes = {
+        @NamedAttributeNode(value = "name"),
+        @NamedAttributeNode(value = "assignedPort", subgraph = "person-planet-subgraph"),
+        @NamedAttributeNode(value = "affiliation", subgraph = "faction-subgraph")
+      }
+    ),
+    @NamedSubgraph(
+      name = "faction-subgraph",
+      attributeNodes = {
+        @NamedAttributeNode("name")
+      }
+    )
+  }
+)
 public class PersonEntity {
 
   @Id
