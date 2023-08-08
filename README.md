@@ -18,3 +18,4 @@ This is just some basic Spring Boot project with some DB models and controller. 
 - **feature/request-context**: Request context with Spring mechanisms.
   - Static ThreadLocal: Using a static ThreadLocal to store the request context.
   - Spring Bean: Using a Spring Bean to store the request context.
+- **feature/micrometer**: Register and expose custom micrometer metrics.
