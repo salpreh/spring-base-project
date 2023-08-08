@@ -13,6 +13,55 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@NamedEntityGraph(
+  name = "full-spaceship",
+  attributeNodes = {
+    @NamedAttributeNode("name"),
+    @NamedAttributeNode(value = "assignedPort", subgraph = "spaceship-planet-subgraph"),
+    @NamedAttributeNode(value = "affiliation", subgraph = "faction-subgraph"),
+    @NamedAttributeNode(value = "crew", subgraph = "spaceship-assignation-subgraph")
+  },
+  subgraphs = {
+    @NamedSubgraph(
+      name = "spaceship-planet-subgraph",
+      attributeNodes = {
+        @NamedAttributeNode("name"),
+        @NamedAttributeNode(value = "affiliation", subgraph = "faction-subgraph")
+      }
+    ),
+    @NamedSubgraph(
+      name = "spaceship-assignation-subgraph",
+      attributeNodes = {
+        @NamedAttributeNode("position"),
+        @NamedAttributeNode(value = "assignee", subgraph = "spaceship-person-subgraph")
+      }
+    ),
+    @NamedSubgraph(
+      name = "spaceship-person-subgraph",
+      attributeNodes = {
+        @NamedAttributeNode("name"),
+        @NamedAttributeNode("alias"),
+        @NamedAttributeNode("age"),
+        @NamedAttributeNode("race"),
+        @NamedAttributeNode(value = "birthPlanet", subgraph = "spaceship-planet-subgraph"),
+        @NamedAttributeNode(value = "affiliations", subgraph = "faction-subgraph")
+      }
+    ),
+    @NamedSubgraph(
+      name = "faction-subgraph",
+      attributeNodes = {
+        @NamedAttributeNode("name"),
+        @NamedAttributeNode(value = "affiliatedPlanets", subgraph = "faction-planet-subgraph")
+      }
+    ),
+    @NamedSubgraph(
+      name = "faction-planet-subgraph",
+      attributeNodes = {
+        @NamedAttributeNode("name")
+      }
+    )
+  }
+)
 public class SpaceshipEntity {
   @Id
   @Column
