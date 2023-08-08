@@ -19,3 +19,4 @@ This is just some basic Spring Boot project with some DB models and controller. 
   - Static ThreadLocal: Using a static ThreadLocal to store the request context.
   - Spring Bean: Using a Spring Bean to store the request context.
 - **feature/micrometer**: Register and expose custom micrometer metrics.
+- **feature/entity-graph**: Add entity graphs to optimize JPA queries.
