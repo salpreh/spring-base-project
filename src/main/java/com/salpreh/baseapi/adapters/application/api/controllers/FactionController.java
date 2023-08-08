@@ -1,6 +1,5 @@
 package com.salpreh.baseapi.adapters.application.api.controllers;
 
-import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.BASE_PATH;
 import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.FACTION_PATH;
 
 import com.salpreh.baseapi.adapters.application.api.config.PaginationConfig;
@@ -11,7 +10,6 @@ import com.salpreh.baseapi.adapters.application.api.services.ApiMetricService;
 import com.salpreh.baseapi.domain.models.Faction;
 import com.salpreh.baseapi.domain.models.commands.FactionCreateCommand;
 import com.salpreh.baseapi.domain.ports.application.FactionPort;
-import io.micrometer.core.instrument.MeterRegistry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -41,7 +39,8 @@ public class FactionController {
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE) int page,
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE_SIZE) int pageSize
   ) {
-    metricService.registerPageRequest(PathConfig.FACTION_PATH);
+    metricService.registerPageRequest(FACTION_PATH);
+    metricService.registerPageSize(FACTION_PATH, pageSize);
     var data = factionUseCase.findAll(PageRequest.of(page, pageSize));
 
     return mapper.map(data);

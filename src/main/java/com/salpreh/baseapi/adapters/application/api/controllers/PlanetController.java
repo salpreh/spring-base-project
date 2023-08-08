@@ -1,10 +1,8 @@
 package com.salpreh.baseapi.adapters.application.api.controllers;
 
-import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.BASE_PATH;
 import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.PLANET_PATH;
 
 import com.salpreh.baseapi.adapters.application.api.config.PaginationConfig;
-import com.salpreh.baseapi.adapters.application.api.config.PathConfig;
 import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
 import com.salpreh.baseapi.adapters.application.api.services.ApiMetricService;
@@ -15,7 +13,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
@@ -32,6 +38,7 @@ public class PlanetController {
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE_SIZE) int pageSize
   ) {
     metricService.registerPageRequest(PLANET_PATH);
+    metricService.registerPageSize(PLANET_PATH, pageSize);
     var data = planetUseCase.findAll(PageRequest.of(page, pageSize));
 
     return mapper.map(data);

@@ -1,5 +1,6 @@
 package com.salpreh.baseapi.adapters.application.api.controllers;
 
+import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.PLANET_PATH;
 import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.SPACESHIP_PATH;
 
 import com.salpreh.baseapi.adapters.application.api.config.PaginationConfig;
@@ -31,6 +32,7 @@ public class SpaceshipController {
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE_SIZE) int pageSize
   ) {
     metricService.registerPageRequest(SPACESHIP_PATH);
+    metricService.registerPageSize(SPACESHIP_PATH, pageSize);
     var data = spaceshipUseCase.findAll(PageRequest.of(page, pageSize));
 
     return mapper.map(data);

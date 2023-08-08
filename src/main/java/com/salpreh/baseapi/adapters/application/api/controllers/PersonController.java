@@ -1,10 +1,8 @@
 package com.salpreh.baseapi.adapters.application.api.controllers;
 
-import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.BASE_PATH;
 import static com.salpreh.baseapi.adapters.application.api.config.PathConfig.PERSON_PATH;
 
 import com.salpreh.baseapi.adapters.application.api.config.PaginationConfig;
-import com.salpreh.baseapi.adapters.application.api.config.PathConfig;
 import com.salpreh.baseapi.adapters.application.api.mappers.ApiMapper;
 import com.salpreh.baseapi.adapters.application.api.models.ApiPage;
 import com.salpreh.baseapi.adapters.application.api.services.ApiMetricService;
@@ -41,6 +39,7 @@ public class PersonController {
     @RequestParam(defaultValue = PaginationConfig.DEFAULT_PAGE_SIZE) int pageSize
   ) {
     metricService.registerPageRequest(PERSON_PATH);
+    metricService.registerPageSize(PERSON_PATH, pageSize);
     var data = personUseCase.findAll(PageRequest.of(page, pageSize));
 
     return mapper.map(data);
